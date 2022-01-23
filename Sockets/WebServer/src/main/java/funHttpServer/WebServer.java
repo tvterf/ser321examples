@@ -205,25 +205,25 @@ class WebServer {
           Integer num2;
 
           if(query_pairs.size() != 2){
-            throw new IllegalArgumentException("Exactly 2 parameters required");
             builder.append("HTTP/1.1 400 Bad Request\n");
             builder.append("Content-Type: text/html; charset=utf-8\n");
             builder.append("\n");
             builder.append("Exactly 2 parameters required i.e. 'num1' & 'num2'");
+            throw new IllegalArgumentException("Exactly 2 parameters required");
           }
           else{
           // extract required fields from parameters
           try{
           num1 = Integer.parseInt(query_pairs.get("num1"));
           } catch(NumberFormatException e){
-            throw new IllegalArgumentException("num1 must be an integer, assigning default value of 4 to num1");
-            num1 = 4;
+             num1 = 4;
+            throw new IllegalArgumentException("num1 must be an integer, assigning default value of 4 to num1"); 
           }
           try{
           num2 = Integer.parseInt(query_pairs.get("num2"));
           } catch(NumberFormatException e){
-            throw new IllegalArgumentException("num2 must be an integer, assigning default value of 111 to num2");
-            num2 = 111;
+             num2 = 111;
+            throw new IllegalArgumentException("num2 must be an integer, assigning default value of 111 to num2"); 
           }
 
           // do math
