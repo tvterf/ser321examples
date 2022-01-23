@@ -201,21 +201,30 @@ class WebServer {
           // extract path parameters
           query_pairs = splitQuery(request.replace("multiply?", ""));
            
-          Integer num1 = null;
-          Integer num2 = null;
+          Integer num1;
+          Integer num2;
 
-          try{
-          // extract required fields from parameters
-          num1 = Integer.parseInt(query_pairs.get("num1"));
-          num2 = Integer.parseInt(query_pairs.get("num2"));
-          }
-          catch(NumberFormatException e){
+          if(query_pairs.size() != 2){
+            throw new IllegalArgumentException("Exactly 2 parameters required");
             builder.append("HTTP/1.1 400 Bad Request\n");
             builder.append("Content-Type: text/html; charset=utf-8\n");
             builder.append("\n");
-            builder.append(e.toString());
+            builder.append("Exactly 2 parameters required i.e. 'num1' & 'num2'");
           }
-          
+          else{
+          // extract required fields from parameters
+          try{
+          num1 = Integer.parseInt(query_pairs.get("num1"));
+          } catch(NumberFormatException e){
+            throw new IllegalArgumentException("num1 must be an integer, assigning default value of 4 to num1");
+            num1 = 4;
+          }
+          try{
+          num2 = Integer.parseInt(query_pairs.get("num2"));
+          } catch(NumberFormatException e){
+            throw new IllegalArgumentException("num2 must be an integer, assigning default value of 111 to num2");
+            num2 = 111;
+          }
 
           // do math
           Integer result = num1 * num2;
