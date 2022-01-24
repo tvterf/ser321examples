@@ -339,11 +339,8 @@ class WebServer {
           }catch(StringIndexOutOfBoundsException siobe){
           empty = true;
           }
-            String from = fetchURL("https://translate.google.com/" + query_pairs.get("sl"));
-           String to = fetchURL("https://translate.google.com/" + query_pairs.get("tl"));
-           String text = fetchURL("https://translate.google.com/" + query_pairs.get("text"));
-           String op = fetchURL("https://translate.google.com/" + query_pairs.get("op"));
-           builder.append(text);
+            String from = fetchURL("https://translate.google.com/" + query_pairs.get("sl") + query_pairs.get("tl") + query_pairs.get("text") + query_pairs.get("op") ); 
+           builder.append(from);
            
         }
            //else if(){
