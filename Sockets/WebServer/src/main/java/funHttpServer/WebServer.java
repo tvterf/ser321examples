@@ -342,7 +342,7 @@ class WebServer {
            String t1 = query_pairs.get("word1");
            String t2 = query_pairs.get("word2");
            
-           String result = fetchURL("https://translate.google.com/?sl=en&tl=es&text=" + t1 + "&op=translate");
+           String result = fetchURL("https://translate.google.com/?sl=en&tl=es&text=" + t1 + "%0A&op=translate");
            
            builder.append(result);
         }
