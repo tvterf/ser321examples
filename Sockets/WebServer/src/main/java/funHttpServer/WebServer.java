@@ -343,8 +343,8 @@ class WebServer {
            String t2 = query_pairs.get("word2");
            
            String result = fetchURL("https://translate.google.com/?sl=en&tl=es&text=" + t1 + "&op=translate");
-           JSONObject t = new JSONObject(result);
-           builder.append(t);
+           
+           builder.append(result);
         }
            //else if(){
            
