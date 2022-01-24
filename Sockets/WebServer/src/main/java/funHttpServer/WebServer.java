@@ -342,7 +342,7 @@ class WebServer {
            String t1 = query_pairs.get("word1");
            String t2 = query_pairs.get("word2");
            //String result = fetchURL("https://translate.google.com/?sl=en&tl=es&text=" + t1 + "&op=translate");
-           builder.append(fetchURL("https://translate.google.com/?sl=en&tl=es&text=" + t1 + "&op=translate"));
+           builder.append(fetchURL("https://www.deepl.com/en/translator#en/es/" + t1 ));
         }
            //else if(){
            
