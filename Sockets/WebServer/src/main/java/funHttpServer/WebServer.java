@@ -328,14 +328,28 @@ class WebServer {
           builder.append("Repo name:" + name + "\tRepo id:" + id + "\tRepo login:" + login + "\n");
           }
           }
-          // TODO: Parse the JSON returned by your fetch and create an appropriate
-          // response
-          // and list the owner name, owner id and name of the public repo on your webpage, e.g.
-          // amehlhase, 46384989 -> memoranda
-          // amehlhase, 46384989 -> ser316examples
-          // amehlhase, 46384989 -> test316
-
-        } else {
+          
+        }else if(request.contains("translate?")){
+          boolean empty = false;
+          boolean error = false;
+           
+          Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+          try{
+          query_pairs = splitQuery(request.replace("translate?", ""));
+          }catch(StringIndexOutOfBoundsException siobe){
+          empty = true;
+          }
+            String from = fetchURL("https://translate.google.com/" + query_pairs.get("sl"));
+           String to = fetchURL("https://translate.google.com/" + query_pairs.get("tl"));
+           String text = fetchURL("https://translate.google.com/" + query_pairs.get("text"));
+           String op = fetchURL("https://translate.google.com/" + query_pairs.get("op"));
+           builder.append(text);
+           
+        }
+           //else if(){
+           
+        //}
+         else {
           // if the request is not recognized at all
 
           builder.append("HTTP/1.1 400 Bad Request\n");
