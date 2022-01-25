@@ -344,14 +344,16 @@ class WebServer {
           }catch(StringIndexOutOfBoundsException siobe){
           empty = true;
           }
+           first = query_pairs.get("word1");
+           second = query_pairs.get("word2");
            try{
-            first = query_pairs.get("word1");
+            first.hashCode();
            }catch(NullPointerException e){
               error1 = true;
               first = "default";
            }
            try{
-            second = query_pairs.get("word2");
+            second.hashCode();
            }catch(NullPointerException e){
               error2 = true;
               second = "DEFAULT";
