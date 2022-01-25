@@ -331,7 +331,8 @@ class WebServer {
           
         }else if(request.contains("hash?")){
           boolean empty = false;
-          boolean error = false;
+          boolean error1 = false;
+          boolean error2 = false;
            
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           try{
@@ -339,14 +340,69 @@ class WebServer {
           }catch(StringIndexOutOfBoundsException siobe){
           empty = true;
           }
+           try{
            String first = query_pairs.get("word1");
+           }catch(NullPointerException e){
+              error1 = true;
+              first = "default";
+           }
+           try{
            String second = query_pairs.get("word2");
+           }catch(NullPointerException e){
+              error2 = true;
+              second = "DEFAULT";
+           }
            
+           if(error == true){
+          builder.append("HTTP/1.1 400 Bad Request\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n");
+          builder.append("Error: No parameters were entered.");
+           }
+           else if(error1 == true && error2 == false){
+          builder.append("HTTP/1.1 400 Bad Request\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n");
+          builder.append("Error: Nothing was entered for parameter word1, setting a default value.");
            int result1 = first.hashCode();
            int result2 = second.hashCode();
            
-           builder.append("Hashcode of " + first + " is " + result1);
+           builder.append("Hashcode of " + first + " is " + result1 + "\n");
            builder.append("Hashcode of " + second + " is " + result2);
+           }
+           else if(error1 == false && error2 == true){
+          builder.append("HTTP/1.1 400 Bad Request\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n");
+          builder.append("Error: Nothing was entered for parameter word2, setting a default value.");
+           int result1 = first.hashCode();
+           int result2 = second.hashCode();
+           
+           builder.append("Hashcode of " + first + " is " + result1 + "\n");
+           builder.append("Hashcode of " + second + " is " + result2);
+           }
+           else if(error1 == true && error2 == true){
+          builder.append("HTTP/1.1 400 Bad Request\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n");
+          builder.append("Error: Nothing was entered for both parameters word1 and word2, setting default values.");
+           int result1 = first.hashCode();
+           int result2 = second.hashCode();
+           
+           builder.append("Hashcode of " + first + " is " + result1 + "\n");
+           builder.append("Hashcode of " + second + " is " + result2);
+           }
+           else{
+           
+           int result1 = first.hashCode();
+           int result2 = second.hashCode();
+          builder.append("HTTP/1.1 200 OK\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n"); 
+           
+           builder.append("Hashcode of " + first + " is " + result1 + "\n");
+           builder.append("Hashcode of " + second + " is " + result2);
+           }
         }
            //else if(){
            
