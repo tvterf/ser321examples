@@ -333,8 +333,8 @@ class WebServer {
           boolean empty = false;
           boolean error1 = false;
           boolean error2 = false;
-          String first = "";
-          String second = "";
+          String first = null;
+          String second = null;
            int result1 = 0;
            int result2 = 0;
            
