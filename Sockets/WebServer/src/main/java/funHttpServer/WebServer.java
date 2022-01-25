@@ -329,22 +329,24 @@ class WebServer {
           }
           }
           
-        }else if(request.contains("compare?")){
+        }else if(request.contains("hash?")){
           boolean empty = false;
           boolean error = false;
            
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           try{
-          query_pairs = splitQuery(request.replace("compare?", ""));
+          query_pairs = splitQuery(request.replace("hash?", ""));
           }catch(StringIndexOutOfBoundsException siobe){
           empty = true;
           }
            String first = query_pairs.get("word1");
            String second = query_pairs.get("word2");
            
-           int result = first.compareTo(second);
+           int result1 = first.hashcode();
+           int result2 = second.hashcode();
            
-           builder.append(result);
+           builder.append("Hashcode of " + first + " is " + result1);
+           builder.append("Hashcode of " + second + " is " + result2);
         }
            //else if(){
            
