@@ -333,6 +333,10 @@ class WebServer {
           boolean empty = false;
           boolean error1 = false;
           boolean error2 = false;
+          String first = "";
+          String second = "";
+           int result1 = 0;
+           int result2 = 0;
            
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           try{
@@ -341,13 +345,13 @@ class WebServer {
           empty = true;
           }
            try{
-           String first = query_pairs.get("word1");
+            first = query_pairs.get("word1");
            }catch(NullPointerException e){
               error1 = true;
               first = "default";
            }
            try{
-           String second = query_pairs.get("word2");
+            second = query_pairs.get("word2");
            }catch(NullPointerException e){
               error2 = true;
               second = "DEFAULT";
@@ -364,8 +368,8 @@ class WebServer {
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
           builder.append("Error: Nothing was entered for parameter word1, setting a default value.");
-           int result1 = first.hashCode();
-           int result2 = second.hashCode();
+           result1 = first.hashCode();
+           result2 = second.hashCode();
            
            builder.append("Hashcode of " + first + " is " + result1 + "\n");
            builder.append("Hashcode of " + second + " is " + result2);
@@ -375,8 +379,8 @@ class WebServer {
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
           builder.append("Error: Nothing was entered for parameter word2, setting a default value.");
-           int result1 = first.hashCode();
-           int result2 = second.hashCode();
+           result1 = first.hashCode();
+           result2 = second.hashCode();
            
            builder.append("Hashcode of " + first + " is " + result1 + "\n");
            builder.append("Hashcode of " + second + " is " + result2);
@@ -386,16 +390,16 @@ class WebServer {
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n");
           builder.append("Error: Nothing was entered for both parameters word1 and word2, setting default values.");
-           int result1 = first.hashCode();
-           int result2 = second.hashCode();
+           result1 = first.hashCode();
+           result2 = second.hashCode();
            
            builder.append("Hashcode of " + first + " is " + result1 + "\n");
            builder.append("Hashcode of " + second + " is " + result2);
            }
            else{
            
-           int result1 = first.hashCode();
-           int result2 = second.hashCode();
+           result1 = first.hashCode();
+           result2 = second.hashCode();
           builder.append("HTTP/1.1 200 OK\n");
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n"); 
