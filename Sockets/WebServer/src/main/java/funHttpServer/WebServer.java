@@ -342,8 +342,8 @@ class WebServer {
            String first = query_pairs.get("word1");
            String second = query_pairs.get("word2");
            
-           int result1 = first.hashcode();
-           int result2 = second.hashcode();
+           int result1 = first.hashCode();
+           int result2 = second.hashCode();
            
            builder.append("Hashcode of " + first + " is " + result1);
            builder.append("Hashcode of " + second + " is " + result2);
