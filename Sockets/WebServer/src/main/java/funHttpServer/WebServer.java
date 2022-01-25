@@ -454,7 +454,7 @@ class WebServer {
                  double num = 1.0 + percent;
                  double factor = Math.pow(num, periods);
                  double result = pVal*factor;
-                 builder.append("The future value of " + pVal + " with an interest rate of " + iRate + "% for " + periods + " years is:" + result);         
+                 builder.append("The future value of " + pVal + " with an interest rate of " + iRate + "% for " + periods + " years is:" + String.format("%.2f", result));         
               }  
         }
          else {
