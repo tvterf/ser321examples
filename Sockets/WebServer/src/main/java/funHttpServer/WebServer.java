@@ -454,10 +454,8 @@ class WebServer {
                  double num = 1 + percent;
                  double factor = Pow(num, period);
                  double result = pVal*factor;
-                 builder.append("The future value of " + pVal + " with an interest rate of " + iRate + " for " + period + " is:" + result); 
-              }
-              }
-           
+                 builder.append("The future value of " + pVal + " with an interest rate of " + iRate + " for " + period + " is:" + result);         
+              }  
         }
          else {
           // if the request is not recognized at all
