@@ -329,20 +329,20 @@ class WebServer {
           }
           }
           
-        }else if(request.contains("translate?")){
+        }else if(request.contains("compare?")){
           boolean empty = false;
           boolean error = false;
            
           Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           try{
-          query_pairs = splitQuery(request.replace("translate?", ""));
+          query_pairs = splitQuery(request.replace("compare?", ""));
           }catch(StringIndexOutOfBoundsException siobe){
           empty = true;
           }
-           String t1 = query_pairs.get("word1");
-           String t2 = query_pairs.get("word2");
+           String first = query_pairs.get("word1");
+           String second = query_pairs.get("word2");
            
-           String result = fetchURL("https://translate.google.com/?sl=en&tl=es&text=cat&op=translate");
+           int result = first.compareTo(second);
            
            builder.append(result);
         }
