@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.LinkedHashMap;
 import java.nio.charset.Charset;
 import org.json.*;
+import java.lang.Math;
 
 class WebServer {
   public static void main(String args[]) {
@@ -410,9 +411,54 @@ class WebServer {
            builder.append("Hashcode of " + second + " is " + result2);
            }
         }
-           //else if(){
+           else if(request.contains("futureValue?")){
+              boolean empty = false;
+              boolean error1 = false;
+              boolean error2 = false;
+              boolean error3 = false;
+              int pVal = 0;
+              int iRate = 0;
+              int periods = 0;
+             Map<String, String> query_pairs = new LinkedHashMap<String, String>();
+          try{
+          query_pairs = splitQuery(request.replace("futureValue?", ""));
+          }catch(StringIndexOutOfBoundsException siobe){
+          empty = true;
+          }
+              try{
+          pVal = Integer.parseInt(query_pairs.get("pVal"));
+          }catch(NumberFormatException e){
+          error1 = true;
+          }
+              try{
+          iRate = Integer.parseInt(query_pairs.get("iRate"));
+          }catch(NumberFormatException e){
+          error2 = true;
+          }
+              try{
+          periods = Integer.parseInt(query_pairs.get("periods"));
+          }catch(NumberFormatException e){
+          error3 = true;
+          }
+              if(empty == true || error1 == true || error2 == true || error3 == true){
+                 builder.append("HTTP/1.1 400 Bad Request\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n");
+          builder.append("Error: Check each parameter to make sure a number is entered and try again.");
+              }
+              else{
+                 builder.append("HTTP/1.1 200 OK\n");
+          builder.append("Content-Type: text/html; charset=utf-8\n");
+          builder.append("\n"); 
+                 double percent = iRate/100;
+                 double num = 1 + percent;
+                 double factor = Pow(num, period);
+                 double result = pVal*factor;
+                 builder.append("The future value of " + pVal + " with an interest rate of " + iRate + " for " + period + " is:" + result); 
+              }
+              }
            
-        //}
+        }
          else {
           // if the request is not recognized at all
 
