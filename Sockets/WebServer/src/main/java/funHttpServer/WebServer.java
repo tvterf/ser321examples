@@ -416,9 +416,9 @@ class WebServer {
               boolean error1 = false;
               boolean error2 = false;
               boolean error3 = false;
-              int pVal = 0;
-              int iRate = 0;
-              int periods = 0;
+              double pVal = 0;
+              double iRate = 0;
+              double periods = 0;
              Map<String, String> query_pairs = new LinkedHashMap<String, String>();
           try{
           query_pairs = splitQuery(request.replace("futureValue?", ""));
@@ -450,11 +450,11 @@ class WebServer {
                  builder.append("HTTP/1.1 200 OK\n");
           builder.append("Content-Type: text/html; charset=utf-8\n");
           builder.append("\n"); 
-                 double percent = iRate/100;
-                 double num = 1 + percent;
+                 double percent = iRate/100.0;
+                 double num = 1.0 + percent;
                  double factor = Math.pow(num, periods);
                  double result = pVal*factor;
-                 builder.append("The future value of " + pVal + " with an interest rate of " + iRate + " for " + periods + " is:" + result);         
+                 builder.append("The future value of " + pVal + " with an interest rate of " + iRate + "% for " + periods + " years is:" + result);         
               }  
         }
          else {
